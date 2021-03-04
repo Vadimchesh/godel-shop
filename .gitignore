@@ -19,6 +19,11 @@ node_modules
 .env.production.local
 .vscode
 
+# Ignore built ts files
+dist/**/*
+
+# ignore yarn.lock
+yarn.lock
 
 npm-debug.log*
 yarn-debug.log*
