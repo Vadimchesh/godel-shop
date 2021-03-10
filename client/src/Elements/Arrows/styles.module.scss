@@ -1,0 +1,21 @@
+@import '../../assets/styles/common.module.scss';
+
+.arrows {
+  display: block;
+}
+.arrowRight,
+.arrowLeft {
+  display: inline-block;
+  margin-right: 2rem;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-top: 2px solid $headline-color;
+  border-left: 2px solid $headline-color;
+}
+.arrowRight {
+  transform: rotate(135deg);
+}
+
+.arrowLeft {
+  transform: rotate(-35deg);
+}

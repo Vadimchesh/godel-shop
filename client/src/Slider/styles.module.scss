@@ -1,0 +1,71 @@
+@import '../assets/styles/common.module.scss';
+
+.content {
+  font-family: $main-font;
+  font-size: 0.87rem;
+  width: 60vw;
+  height: 100vh;
+  background-image: url(../assets/img/backgound.png);
+  border-radius: 0 2rem 2rem 0;
+  .slider {
+    margin-left: 3rem;
+  }
+  .headline {
+    margin-top: 18.75rem;
+    width: 22.5rem;
+  }
+  h1 {
+    @include big-headline-font;
+    margin-bottom: 2.1rem;
+  }
+  h3 {
+    @include second-headline-font;
+    margin-bottom: 2.25rem;
+  }
+}
+.sliderNav {
+  color: $headline-color;
+  margin-top: 5rem;
+}
+
+.progressBar {
+  display: inline-block;
+  margin-right: 3rem;
+}
+
+.arrows {
+  display: inline-block;
+}
+.arrowRight,
+.arrowLeft {
+  display: inline-block;
+  margin-right: 2rem;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-top: 2px solid $headline-color;
+  border-left: 2px solid $headline-color;
+}
+.arrowRight {
+  transform: rotate(135deg);
+}
+
+.arrowLeft {
+  transform: rotate(-35deg);
+}
+
+::-webkit-progress-bar {
+  background: rgba(255, 255, 255, 0.5);
+}
+::-webkit-progress-value {
+  background: $headline-color;
+}
+::-moz-progress-bar {
+  background: red;
+}
+progress {
+  margin: 0.2rem 0.5rem;
+  display: inline-block;
+  border-radius: 0.3rem;
+  width: 11rem;
+  height: 0.15rem;
+}

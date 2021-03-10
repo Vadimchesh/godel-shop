@@ -1,11 +1,20 @@
-import './App.css';
+import s from './styles.module.scss'
+import WorkSection from "./WorkSection/WorkSection";
+import Header from "./Header/Header";
+import Slider from "./Slider/Slider";
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <h1>Hello world!</h1>
+    <div className={s.wrapper}>
+      <Header />
+      <div className={s.main}>
+      <Slider />
+      <WorkSection />
+      </div>
+     
     </div>
   );
 }
 
-export default App;
+
+
