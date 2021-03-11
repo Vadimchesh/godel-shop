@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react'
-import s from "./styles.module.scss";
+import style from "./styles.module.scss";
 
 interface Props {
     title: string,
@@ -8,7 +8,7 @@ interface Props {
 export default function Button(props: Props): ReactElement {
     return (
         <div>
-            <button className={s.mainBtn}>{props.title}</button>
+            <button className={style.mainBtn}>{props.title}</button>
         </div>
     )
 }

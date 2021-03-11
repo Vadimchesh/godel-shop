@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react'
 import { NavLink } from 'react-router-dom';
-import s from "./styles.module.scss";
+import style from "./styles.module.scss";
 
 interface Props {
     
@@ -8,22 +8,22 @@ interface Props {
 
 export default function Header({}: Props): ReactElement {
     return (
-        <div className={s.head}>
-        <div className={s.header}>
-            <div className={s.logo}><NavLink to="/">Godel Shop</NavLink><span>.</span></div>
-            <nav className={s.nav}>
-                <div className={s.burger}>
+        <div className={style.head}>
+        <div className={style.header}>
+            <div className={style.logo}><NavLink to="/">Godel Shop</NavLink><span>.</span></div>
+            <nav className={style.nav}>
+                <div className={style.burger}>
                     <label>
                         <span></span>
                         <span></span>
                     </label>
                     </div>
-                <div className={s.navMenu}>
+                <div className={style.navMenu}>
                     <div><NavLink to="/discover">Discover</NavLink></div>
                     <div><NavLink to="/blog">Blog</NavLink></div> 
                       <div>
                         <NavLink to="/profile">
-                            <div className={s.login}>
+                            <div className={style.login}>
                                 <span></span>
                             </div>
                         </NavLink>

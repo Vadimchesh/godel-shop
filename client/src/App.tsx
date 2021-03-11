@@ -1,13 +1,13 @@
-import s from './styles.module.scss'
+import style from './styles.module.scss'
 import WorkSection from "./WorkSection/WorkSection";
 import Header from "./Header/Header";
 import Slider from "./Slider/Slider";
 
 export default function App() {
   return (
-    <div className={s.wrapper}>
+    <div className={style.wrapper}>
       <Header />
-      <div className={s.main}>
+      <div className={style.main}>
       <Slider />
       <WorkSection />
       </div>

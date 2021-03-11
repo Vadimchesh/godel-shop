@@ -1,16 +1,16 @@
 import React, { ReactElement } from 'react'
 import Button from '../Elements/Button/Button';
-import s from "./styles.module.scss";
-interface BlogArticleProps {
+import style from "./styles.module.scss";
+interface IBlogArticleProps {
     headline: string;
 }
 
-export default function BlogArticle(props: BlogArticleProps): ReactElement {
+export default function BlogArticle(props: IBlogArticleProps): ReactElement {
     return (
-        <div className={s.article}>
-            <div className={s.headline}><h1>{props.headline}</h1></div>
+        <div className={style.article}>
+            <div className={style.headline}><h1>{props.headline}</h1></div>
             <div>Date:</div>
-            <div className={s.text}> 
+            <div className={style.text}> 
                 <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae obcaecati eligendi, 
                 non repellendus tenetur provident cum, laudantium blanditiis labore voluptatum autem, 
@@ -18,7 +18,6 @@ export default function BlogArticle(props: BlogArticleProps): ReactElement {
                 </p>
             </div>
             <Button title='Read more' />
-  
         </div>
     )
 }

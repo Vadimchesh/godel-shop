@@ -1,5 +1,5 @@
   import React, { ReactElement } from 'react'
-  import  s  from "./styles.module.scss";
+  import  style  from "./styles.module.scss";
   import Button from "../Elements/Button/Button";
 import { NavLink } from 'react-router-dom';
   
@@ -9,24 +9,24 @@ import { NavLink } from 'react-router-dom';
   
   export default function Slider({}: Props): ReactElement {
       return (
-          <div className={s.content}>
-            <div className={s.slider}>
-                <div className={s.headline}>
+          <div className={style.content}>
+            <div className={style.slider}>
+                <div className={style.headline}>
                 <h1>Get ready for your lifetime journey!</h1>
                 <h3>Collection of the most beutiful places, experiences
                 anusual housing int the world.</h3>
                 <NavLink to='/profile'><Button title='Get started'/></NavLink>
                 </div>
-                <div className={s.sliderNav}>
-                    <div className={s.progressBar}>
+                <div className={style.sliderNav}>
+                    <div className={style.progressBar}>
                         <span>01</span>
                         <progress max="3" value="1">
                         </progress>
                         <span>03</span>
                     </div>
-                    <div className={s.arrows}>
-                    <div className={s.arrowLeft}></div>
-                    <div className={s.arrowRight}></div>
+                    <div className={style.arrows}>
+                    <div className={style.arrowLeft}></div>
+                    <div className={style.arrowRight}></div>
                     </div>
                 </div>
             </div>

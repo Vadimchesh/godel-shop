@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react'
-import s from "./styles.module.scss";
+import style from "./styles.module.scss";
 
 interface Props {
     
@@ -7,7 +7,7 @@ interface Props {
 
 export default function Search({}: Props): ReactElement {
     return (
-        <div className={s.search}>
+        <div className={style.search}>
             <input type="text" placeholder="Search"></input>
         </div>
     )

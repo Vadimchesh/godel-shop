@@ -1,12 +1,12 @@
 import React, { ReactElement } from 'react'
-import s from "./styles.module.scss";
+import style from "./styles.module.scss";
 
 
 export default function Arrow() {
     return (
-        <div className={s.arrows}>
-            <div className={s.arrowLeft}></div>
-            <div className={s.arrowRight}></div>
+        <div className={style.arrows}>
+            <div className={style.arrowLeft}></div>
+            <div className={style.arrowRight}></div>
         </div>
     )
 }
