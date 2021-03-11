@@ -1,14 +1,14 @@
-import React, { ReactElement } from 'react'
-import style from "./styles.module.scss";
+import React, { ReactElement } from 'react';
+import style from './styles.module.scss';
 
 interface Props {
-    title: string,
+  title: string;
 }
 
 export default function Button(props: Props): ReactElement {
-    return (
-        <div>
-            <button className={style.mainBtn}>{props.title}</button>
-        </div>
-    )
+  return (
+    <div>
+      <button className={style.mainBtn}>{props.title}</button>
+    </div>
+  );
 }
