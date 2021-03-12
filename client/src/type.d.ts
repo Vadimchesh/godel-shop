@@ -1,18 +1,19 @@
-interface IBlogPost {
-    _id: string
-    title: string
-    id: string
-    data: string
-    createdAt?: string
-  }
-  
-  interface BlogProps {
-    post: IBlogPost
-  }
-  
-  type ApiDataType = {
-    title: string
-    data: string
-    posts: IBlogPost[]
-    todo?: IBlogPost
-  }
+interface IPost {
+  _id: string
+  name: string
+  description: string
+  status: boolean
+  createdAt?: string
+  updatedAt?: string
+}
+
+type PostProps = {
+  post: IPost
+}
+
+type ApiDataType = {
+  message: string
+  status: string
+  posts: IPost[]
+  post?: IPost
+}
