@@ -1,11 +1,13 @@
 import express, { Express } from "express"
 import mongoose from "mongoose"
+import proxy from 'express-http-proxy'
 import postRoutes from "./routes"
 
 const app: Express = express()
 
 const PORT: string | number = process.env.PORT || 4000
 
+app.use('/api', proxy('http://example.com'))
 app.use(express.json())
 app.use(postRoutes)
 
