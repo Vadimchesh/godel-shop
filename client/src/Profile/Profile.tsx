@@ -1,10 +1,9 @@
 import React, { ReactElement } from 'react';
+import style from './styles.module.scss';
 
-interface Props {}
-
-export default function Profile({}: Props): ReactElement {
+export default function Profile(): ReactElement {
   return (
-    <div>
+    <div className={style.profile}>
       <h1>You Profile</h1>
       <div>Orders:</div>
     </div>

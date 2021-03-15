@@ -2,9 +2,7 @@ import React, { ReactElement } from 'react';
 import BlogArticle from '../BlogArticle/BlogArticle';
 import style from './styles.module.scss';
 
-interface Props {}
-
-export default function Blog({}: Props): ReactElement {
+export default function Blog(): ReactElement {
   return (
     <div className={style.blog}>
       <div className={style.headline}>

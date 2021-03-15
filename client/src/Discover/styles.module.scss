@@ -1,7 +1,7 @@
 @import '../assets/styles/common.module.scss';
 
 .main {
-  margin-top: 3.8rem;
+  @include padding-worksection;
   font-style: normal;
   line-height: 1.25rem;
   .headline h1 {

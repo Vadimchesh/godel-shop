@@ -6,12 +6,13 @@
   width: 60vw;
   height: 100vh;
   background-image: url(../assets/img/backgound.png);
+  background-repeat: round;
   border-radius: 0 2rem 2rem 0;
   .slider {
-    margin-left: 3rem;
+    padding-left: 3rem;
   }
   .headline {
-    margin-top: 18.75rem;
+    padding-top: 18.75rem;
     width: 22.5rem;
   }
   h1 {

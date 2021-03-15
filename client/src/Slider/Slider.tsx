@@ -3,9 +3,7 @@ import style from './styles.module.scss';
 import Button from '../Elements/Button/Button';
 import { NavLink } from 'react-router-dom';
 
-interface Props {}
-
-export default function Slider({}: Props): ReactElement {
+export default function Slider(): ReactElement {
   return (
     <div className={style.content}>
       <div className={style.slider}>

@@ -3,15 +3,15 @@ import style from './styles.module.scss';
 import Cards from '../Card/Cards';
 import Arrows from '../Elements/Arrows/Arrows';
 import { NavLink } from 'react-router-dom';
+import Search from '../Search/Search';
 
-interface Props {}
-
-export default function Discover({}: Props): ReactElement {
+export default function Discover(): ReactElement {
   return (
     <div className={style.main}>
       <div className={style.headline}>
         <h1>Discover</h1>
       </div>
+      <Search />
       <div className={style.categories}>
         <NavLink to='categories'>
           <h2>Books</h2>

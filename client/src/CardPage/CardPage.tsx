@@ -2,9 +2,7 @@ import React, { ReactElement } from 'react';
 import Button from '../Elements/Button/Button';
 import style from './styles.module.scss';
 
-interface Props {}
-
-export default function CardPage(props: Props): ReactElement {
+export default function CardPage(): ReactElement {
   return (
     <div className={style.article}>
       <div className={style.headline}>

@@ -2,9 +2,7 @@ import React, { ReactElement } from 'react';
 import { NavLink } from 'react-router-dom';
 import style from './styles.module.scss';
 
-interface Props {}
-
-export default function Header({}: Props): ReactElement {
+export default function Header(): ReactElement {
   return (
     <div className={style.head}>
       <div className={style.header}>

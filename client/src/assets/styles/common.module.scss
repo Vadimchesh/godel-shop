@@ -6,6 +6,12 @@ $second-headline-color: #bdbdbd;
 $headline-color: #fff;
 $second-color: #ff532e;
 
+//padding and margin
+
+@mixin padding-worksection {
+  padding: 7rem 3rem;
+}
+
 // font
 $main-font: 'Roboto', sans-serif;
 

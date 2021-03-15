@@ -1,11 +1,10 @@
 import React, { ReactElement } from 'react';
 import Cards from '../Card/Cards';
+import style from './styles.module.scss';
 
-interface Props {}
-
-export default function Categories({}: Props): ReactElement {
+export default function Categories(): ReactElement {
   return (
-    <div>
+    <div className={style.categories}>
       <h1>Books</h1>
       <Cards title='Book used' />
     </div>
