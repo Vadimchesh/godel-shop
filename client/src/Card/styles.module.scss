@@ -14,7 +14,7 @@
     box-shadow: 0.2rem 0.1rem 0 0 rgba(0, 0, 255, 0.2);
     transform: scale(1.05);
   }
-  label {
+  .labelSvg {
     position: absolute;
     top: 0;
     right: 1rem;
@@ -30,6 +30,13 @@
       rgba(0, 0, 0, 0.9) 100%
     );
   }
+  .icon {
+    display: inline-block;
+    width: 0.312rem;
+    height: 0.437rem;
+    margin-left: 1.125rem;
+    margin-right: 0.562rem;
+  }
   h3 {
     color: $headline-color;
     margin-left: 1.125rem;
@@ -39,12 +46,7 @@
     line-height: 0.655rem;
     margin-bottom: 0.562rem;
   }
-  .icon {
-    width: 0.312rem;
-    height: 0.437rem;
-    margin-left: 1.125rem;
-    margin-right: 0.562rem;
-  }
+
   span {
     color: $headline-color;
     font-weight: 600;

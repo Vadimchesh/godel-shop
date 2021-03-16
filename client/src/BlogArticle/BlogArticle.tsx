@@ -1,11 +1,12 @@
 import React, { ReactElement } from 'react';
 import Button from '../Elements/Button/Button';
 import style from './styles.module.scss';
-interface IBlogArticleProps {
+
+interface IBlogArticleProps<T> {
   headline: string;
 }
 
-export default function BlogArticle(props: IBlogArticleProps): ReactElement {
+export default function BlogArticle<T>(props: IBlogArticleProps<T>): ReactElement {
   return (
     <div className={style.article}>
       <div className={style.headline}>

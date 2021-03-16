@@ -6,11 +6,12 @@
 .arrowRight,
 .arrowLeft {
   display: inline-block;
+  margin-top: 2rem;
   margin-right: 2rem;
-  width: 0.5rem;
-  height: 0.5rem;
-  border-top: 2px solid $headline-color;
-  border-left: 2px solid $headline-color;
+  width: 0.8rem;
+  height: 0.8rem;
+  border-top: 2px solid $base-color;
+  border-left: 2px solid $base-color;
 }
 .arrowRight {
   transform: rotate(135deg);

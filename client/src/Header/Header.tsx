@@ -1,5 +1,7 @@
 import React, { ReactElement } from 'react';
 import { NavLink } from 'react-router-dom';
+import { ReactSVG } from 'react-svg';
+import { slide as Menu } from 'react-burger-menu';
 import style from './styles.module.scss';
 
 export default function Header(): ReactElement {
@@ -11,12 +13,7 @@ export default function Header(): ReactElement {
           <span>.</span>
         </div>
         <nav className={style.nav}>
-          <div className={style.burger}>
-            <label>
-              <span></span>
-              <span></span>
-            </label>
-          </div>
+          <ReactSVG className={style.burger} src='burger.svg' />
           <div className={style.navMenu}>
             <div>
               <NavLink to='/discover'>Discover</NavLink>

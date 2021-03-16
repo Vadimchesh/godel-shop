@@ -4,6 +4,7 @@ import Cards from '../Card/Cards';
 import Arrows from '../Elements/Arrows/Arrows';
 import { NavLink } from 'react-router-dom';
 import Search from '../Search/Search';
+import BlogArticle from '../BlogArticle/BlogArticle';
 
 export default function Discover(): ReactElement {
   return (

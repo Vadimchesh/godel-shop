@@ -10,8 +10,6 @@ export default function Blog(): ReactElement {
       </div>
       <div className={style.blogList}>
         <BlogArticle headline='New article 1' />
-        <BlogArticle headline='New article 2' />
-        <BlogArticle headline='New article 3' />
       </div>
     </div>
   );

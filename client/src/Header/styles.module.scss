@@ -21,6 +21,9 @@
   span {
     color: $second-color;
   }
+  .notHome {
+    color: $base-color;
+  }
 }
 
 .nav {
@@ -38,23 +41,6 @@
   font-size: 0.8rem;
   font-weight: 600;
   line-height: 1.2rem;
-}
-
-.burger {
-  width: 2rem;
-  height: 0.1rem;
-  background-color: $base-color;
-  label {
-    display: inline-block;
-    label span:first-child {
-      height: 0.2rem;
-      width: 100%;
-    }
-    :last-child {
-      height: 0.2rem;
-      width: 30%;
-    }
-  }
 }
 
 .login {
