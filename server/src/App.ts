@@ -25,3 +25,5 @@ mongoose
   .catch(error => {
     throw error
   })
+
+  export default app

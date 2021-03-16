@@ -1,19 +1,15 @@
 import { Response, Request } from "express"
 import { IPost } from "./../../types/post"
 import Post from "../../models/post"
+import bodyParser from 'body-parser'
 
-const getPosts = async (req: Request, res: Response): Promise<void> => {
-  try {
-    const posts: IPost[] = await Post.find()
-    res.status(200).json({ posts })
-  } catch (error) {
-    throw error
-  }
+
+const getPosts = () => {
+ Post.find()
 }
 
-const addPost = async (req: Request, res: Response): Promise<void> => {
-    try {
-      const body = req.body as Pick<IPost, "name" | "description" | "status">
+const addPost = () => {
+      const body = bodyParser as Pick<IPost, "name" | "description" | "status">
   
       const post: IPost = new Post({
         name: body.name,
@@ -21,16 +17,10 @@ const addPost = async (req: Request, res: Response): Promise<void> => {
         status: body.status,
       })
   
-      const newPost: IPost = await post.save()
-      const allPosts: IPost[] = await Post.find()
-  
-      res
-        .status(201)
-        .json({ message: "Post added", post: newPost, posts: allPosts })
-    } catch (error) {
-      throw error
+      const newPost: IPost =  post.save()
+      const allPosts: IPost[] = Post.find()
     }
-  }
+  
 
   const updatePost = async (req: Request, res: Response): Promise<void> => {
     try {
