@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import style from './styles.module.scss';
+import styles from './styles.module.scss';
 import Blog from '../Blog/Blog';
 import Discover from '../Discover/Discover';
 import CardPage from '../CardPage/CardPage';
@@ -10,7 +10,7 @@ import Home from '../Home/Home';
 
 export default function WorkSection() {
   return (
-    <div className={style.workSection}>
+    <div className={styles.workSection}>
       <Switch>
         <Route exact path='/blog' component={Blog} />
         <Route exact path='/discover' component={Discover} />

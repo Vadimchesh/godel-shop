@@ -1,14 +1,14 @@
 import React, { ReactElement } from 'react';
 import BlogArticle from '../BlogArticle/BlogArticle';
-import style from './styles.module.scss';
+import styles from './styles.module.scss';
 
 export default function Blog(): ReactElement {
   return (
-    <div className={style.blog}>
-      <div className={style.headline}>
+    <div className={styles.blog}>
+      <div className={styles.headline}>
         <h1>Blog list</h1>
       </div>
-      <div className={style.blogList}>
+      <div className={styles.blogList}>
         <BlogArticle headline='New article 1' />
       </div>
     </div>

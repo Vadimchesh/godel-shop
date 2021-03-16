@@ -1,9 +1,9 @@
 import React, { ReactElement } from 'react';
-import style from './styles.module.scss';
+import styles from './styles.module.scss';
 
 export default function Search(): ReactElement {
   return (
-    <div className={style.search}>
+    <div className={styles.search}>
       <input type='text' placeholder='Search'></input>
     </div>
   );

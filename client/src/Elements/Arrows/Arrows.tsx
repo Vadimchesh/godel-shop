@@ -1,11 +1,11 @@
 import React from 'react';
-import style from './styles.module.scss';
+import styles from './styles.module.scss';
 
 export default function Arrow() {
   return (
-    <div className={style.arrows}>
-      <div className={style.arrowLeft}></div>
-      <div className={style.arrowRight}></div>
+    <div className={styles.arrows}>
+      <div className={styles.arrowLeft}></div>
+      <div className={styles.arrowRight}></div>
     </div>
   );
 }

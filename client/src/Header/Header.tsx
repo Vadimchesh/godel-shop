@@ -1,20 +1,20 @@
 import React, { ReactElement } from 'react';
 import { NavLink } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
-import { slide as Menu } from 'react-burger-menu';
-import style from './styles.module.scss';
+import burger from '../assets/img/burger.svg';
+import styles from './styles.module.scss';
 
 export default function Header(): ReactElement {
   return (
-    <div className={style.head}>
-      <div className={style.header}>
-        <div className={style.logo}>
+    <div className={styles.head}>
+      <div className={styles.header}>
+        <div className={styles.logo}>
           <NavLink to='/'>Godel Shop</NavLink>
           <span>.</span>
         </div>
-        <nav className={style.nav}>
-          <ReactSVG className={style.burger} src='burger.svg' />
-          <div className={style.navMenu}>
+        <nav className={styles.nav}>
+          <ReactSVG className={styles.burger} src={burger} />
+          <div className={styles.navMenu}>
             <div>
               <NavLink to='/discover'>Discover</NavLink>
             </div>
@@ -23,7 +23,7 @@ export default function Header(): ReactElement {
             </div>
             <div>
               <NavLink to='/profile'>
-                <div className={style.login}>
+                <div className={styles.login}>
                   <span></span>
                 </div>
               </NavLink>
