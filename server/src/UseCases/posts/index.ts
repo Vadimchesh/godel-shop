@@ -4,6 +4,9 @@ import Post from '../../models/post';
 const getPosts = () => {
   return Posts.find();
 };
+const getPost = () => {
+  return Posts.find();
+};
 const addPost = () => {
   return Posts.post();
 };
@@ -14,4 +17,4 @@ const deletePost = () => {
   return Posts.delete();
 };
 
-export { getPosts, addPost, updatePost, deletePost };
+export { getPosts, getPost, addPost, updatePost, deletePost };
