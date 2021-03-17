@@ -1,5 +1,5 @@
-import { IPost } from "./../types/post"
-import { model, Schema } from "mongoose"
+import { IPost } from '../types/post';
+import { model, Schema } from 'mongoose';
 
 const postSchema: Schema = new Schema(
   {
@@ -18,7 +18,7 @@ const postSchema: Schema = new Schema(
       required: true,
     },
   },
-  { timestamps: true }
-)
+  { timestamps: true },
+);
 
-export default model<IPost>("Post", postSchema)
+export default model<IPost>('Post', postSchema);

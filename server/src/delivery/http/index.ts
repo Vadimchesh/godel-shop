@@ -1,6 +1,11 @@
-import express from 'express'
-import route from './Post'
+import express from 'express';
+import routePost from './Post';
 
-const app: express.Application = express()
+const app: express.Application = express();
 
-app.use('/posts', route)
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use('api/posts', routePost);
+
+export default app;

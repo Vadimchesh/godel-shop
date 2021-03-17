@@ -1,2 +1,2 @@
-import app from '../App'
-export default app 
+import app from './http';
+export default app;
