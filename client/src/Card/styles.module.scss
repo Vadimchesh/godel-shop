@@ -1,0 +1,56 @@
+@import '../assets/styles/common.module.scss';
+
+.card {
+  position: relative;
+  margin-right: 0.7rem;
+  color: $headline-color;
+  width: 10rem;
+  height: 15.5rem;
+  border-radius: 0.625rem;
+  font-style: normal;
+  background-image: url(../assets/img/kayak.png);
+  background-repeat: round;
+  &:hover {
+    box-shadow: 0.2rem 0.1rem 0 0 rgba(0, 0, 255, 0.2);
+    transform: scale(1.05);
+  }
+  .labelSvg {
+    position: absolute;
+    top: 0;
+    right: 1rem;
+  }
+  .gradient {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    border-radius: 0.625rem;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0) 52.78%,
+      rgba(0, 0, 0, 0.9) 100%
+    );
+  }
+  .icon {
+    display: inline-block;
+    width: 0.312rem;
+    height: 0.437rem;
+    margin-left: 1.125rem;
+    margin-right: 0.562rem;
+  }
+  h3 {
+    color: $headline-color;
+    margin-left: 1.125rem;
+    padding-top: 11rem;
+    font-weight: bold;
+    font-size: 1rem;
+    line-height: 0.655rem;
+    margin-bottom: 0.562rem;
+  }
+
+  span {
+    color: $headline-color;
+    font-weight: 600;
+    font-size: 0.5rem;
+    line-height: 0.812rem;
+  }
+}

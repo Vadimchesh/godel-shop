@@ -1,11 +1,13 @@
-import './App.css';
+import React from 'react';
+import styles from './styles.module.scss';
+import WorkSection from './WorkSection/WorkSection';
+import Header from './Header/Header';
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <h1>Hello world!</h1>
+    <div className={styles.wrapper}>
+      <Header />
+      {<WorkSection />}
     </div>
   );
 }
-
-export default App;
