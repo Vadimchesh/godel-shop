@@ -1,15 +1,12 @@
 import Post from './models/post';
+import { IPost } from './types/post';
 
-class PostService {
-  async create(post: any) {
-    const createdPost = await Post.create({ ...post });
-    return createdPost;
-  }
+class PostData {
   async getAll() {
     const posts = await Post.find();
     return posts;
   }
-  async getOne(id: any) {
+  async getOne() {
     if (!id) {
       throw new Error('не указан ID');
     }
@@ -17,7 +14,12 @@ class PostService {
     return post;
   }
 
-  async update(post: any) {
+  async create(post: IPost) {
+    const createdPost = await Post.create({ ...post });
+    return createdPost;
+  }
+
+  async update(post: IPost) {
     if (!post._id) {
       throw new Error('не указан ID');
     }
@@ -25,7 +27,7 @@ class PostService {
     return updatedPost;
   }
 
-  async delete(id: any) {
+  async delete(id: number) {
     if (!id) {
       throw new Error('не указан ID');
     }
@@ -34,4 +36,4 @@ class PostService {
   }
 }
 
-export default new PostService();
+export default new PostData();

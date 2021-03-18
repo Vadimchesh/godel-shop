@@ -1,2 +1,2 @@
-import PostService from './mongoose';
-export default PostService;
+import PostData from './mongoose';
+export default PostData;

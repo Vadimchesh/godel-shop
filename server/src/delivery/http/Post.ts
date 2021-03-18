@@ -1,10 +1,10 @@
 import express, { Router } from 'express';
-import { getPosts, getPost, addPost, updatePost, deletePost } from '../../UseCases/posts';
+import UseCases from '../../UseCases';
 
 const PostRoute: Router = express.Router();
 
 PostRoute.get('/posts', async (req, res) => {
-  const { value, error } = await getPosts();
+  const { value, error } = await UseCases.PostsService.getPosts();
   if (error) {
     res.status(500).json(error || new Error('Post undefined error'));
     return;
@@ -13,7 +13,7 @@ PostRoute.get('/posts', async (req, res) => {
 });
 
 PostRoute.get('/posts/:id', async (req, res) => {
-  const { value, error } = await getPost();
+  const { value, error } = await UseCases.PostsService.getPost();
   if (error) {
     res.status(500).json(error || new Error('Post undefined error'));
     return;
@@ -22,7 +22,7 @@ PostRoute.get('/posts/:id', async (req, res) => {
 });
 
 PostRoute.post('/posts', async (req, res) => {
-  const { value, error } = await addPost();
+  const { value, error } = await UseCases.PostsService.addPost();
   if (error) {
     res.status(500).json(error || new Error('Post undefined error'));
     return;
@@ -31,7 +31,7 @@ PostRoute.post('/posts', async (req, res) => {
 });
 
 PostRoute.put('posts/:id', async (req, res) => {
-  const { value, error } = await updatePost();
+  const { value, error } = await UseCases.PostsService.updatePost();
   if (error) {
     res.status(500).json(error || new Error('Post undefined error'));
     return;
@@ -40,7 +40,7 @@ PostRoute.put('posts/:id', async (req, res) => {
 });
 
 PostRoute.delete('posts/:id', async (req, res) => {
-  const { value, error } = await deletePost();
+  const { value, error } = await UseCases.PostsService.deletePost();
   if (error) {
     res.status(500).json(error || new Error('Post undefined error'));
     return;
