@@ -10,4 +10,4 @@
     },
     "include": ["src/**/*"],
     "exclude": ["src/repository/types/*.ts", "node_modules", ".vscode"]
-  }
+  }, "App.ts"

@@ -3,7 +3,7 @@ import { getPosts, getPost, addPost, updatePost, deletePost } from '../../UseCas
 
 const PostRoute: Router = express.Router();
 
-PostRoute.get('', async (req, res) => {
+PostRoute.get('/posts', async (req, res) => {
   const { value, error } = await getPosts();
   if (error) {
     res.status(500).json(error || new Error('Post undefined error'));
@@ -12,7 +12,7 @@ PostRoute.get('', async (req, res) => {
   res.status(200).json(value);
 });
 
-PostRoute.get('/:id', async (req, res) => {
+PostRoute.get('/posts/:id', async (req, res) => {
   const { value, error } = await getPost();
   if (error) {
     res.status(500).json(error || new Error('Post undefined error'));
@@ -21,7 +21,7 @@ PostRoute.get('/:id', async (req, res) => {
   res.status(200).json(value);
 });
 
-PostRoute.post('', async (req, res) => {
+PostRoute.post('/posts', async (req, res) => {
   const { value, error } = await addPost();
   if (error) {
     res.status(500).json(error || new Error('Post undefined error'));
@@ -30,7 +30,7 @@ PostRoute.post('', async (req, res) => {
   res.status(200).json({ message: 'Post added', value });
 });
 
-PostRoute.put('/:id', async (req, res) => {
+PostRoute.put('posts/:id', async (req, res) => {
   const { value, error } = await updatePost();
   if (error) {
     res.status(500).json(error || new Error('Post undefined error'));
@@ -39,13 +39,13 @@ PostRoute.put('/:id', async (req, res) => {
   res.status(200).json({ message: 'Post updated', value });
 });
 
-PostRoute.delete('/:id', async (req, res) => {
+PostRoute.delete('posts/:id', async (req, res) => {
   const { value, error } = await deletePost();
   if (error) {
     res.status(500).json(error || new Error('Post undefined error'));
     return;
   }
-  res.status(200).json({ message: 'Todo deleted', value });
+  res.status(200).json({ message: 'Post deleted', value });
 });
 
 export default PostRoute;

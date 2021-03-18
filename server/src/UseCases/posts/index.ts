@@ -1,20 +1,19 @@
-import IPost from '../Interface/post';
-import Post from '../../models/post';
+import PostService from '../../repository';
 
 const getPosts = () => {
-  return Posts.find();
+  return PostService.getAll();
 };
 const getPost = () => {
-  return Posts.find();
+  return PostService.getOne();
 };
 const addPost = () => {
-  return Posts.post();
+  return PostService.create([]);
 };
 const updatePost = () => {
-  return Posts.put();
+  return PostService.update([]);
 };
 const deletePost = () => {
-  return Posts.delete();
+  return PostService.delete();
 };
 
 export { getPosts, getPost, addPost, updatePost, deletePost };
