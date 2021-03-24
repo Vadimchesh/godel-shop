@@ -6,6 +6,6 @@ const app: express.Application = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use('api/posts', routePost);
+app.use('/api', routePost);
 
 export default app;

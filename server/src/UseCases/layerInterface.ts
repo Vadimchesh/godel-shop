@@ -5,9 +5,9 @@ export interface IUseCases {
 }
 
 export interface IPostsService {
-  getPosts: () => Promise<IPost[]>;
-  getPost: () => Promise<IPost | null>;
-  addPost: () => Promise<IPost>;
-  updatePost: () => Promise<IPost | null>;
-  deletePost: () => Promise<IPost | null>;
+  getPosts: () => Promise<IPost[] | null>;
+  getPost: (id: string) => Promise<IPost | null>;
+  addPost: (post: IPost) => Promise<IPost | null>;
+  updatePost: (post: IPost) => Promise<IPost | null>;
+  deletePost: (id: string) => Promise<IPost | null>;
 }

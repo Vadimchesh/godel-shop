@@ -1,21 +1,22 @@
 import PostData from '../../repository';
 import { IPostsService } from '../layerInterface';
+import { IPost } from '../../repository/mongoose/types/post';
 
 class PostsService implements IPostsService {
   getPosts = () => {
     return PostData.getAll();
   };
-  getPost = () => {
-    return PostData.getOne();
+  getPost = (id: string) => {
+    return PostData.getOne(id);
   };
-  addPost = () => {
-    return PostData.create();
+  addPost = (post: IPost) => {
+    return PostData.create(post);
   };
-  updatePost = () => {
-    return PostData.update();
+  updatePost = (post: IPost) => {
+    return PostData.update(post);
   };
-  deletePost = () => {
-    return PostData.delete();
+  deletePost = (id: string) => {
+    return PostData.delete(id);
   };
 }
 

@@ -6,7 +6,8 @@ class PostData {
     const posts = await Post.find();
     return posts;
   }
-  async getOne() {
+
+  async getOne(id: string) {
     if (!id) {
       throw new Error('не указан ID');
     }
@@ -27,11 +28,11 @@ class PostData {
     return updatedPost;
   }
 
-  async delete(id: number) {
+  async delete(id: string) {
     if (!id) {
       throw new Error('не указан ID');
     }
-    const post = await Post.findByIdAndDelete(id);
+    const post = await Post.findByIdAndRemove(id);
     return post;
   }
 }
