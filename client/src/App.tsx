@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 import PostItem from './components/PostItem';
 import AddPost from './components/AddPost';
 import { getPosts, addPost, updatePost, deletePost } from './API';
+import Modal from './components/Modal/Modal';
 
 const App: React.FC = () => {
   const [posts, setPosts] = useState<IPost[]>([]);
+  const [isOpen, setIsOpen] = useState<Boolean>(false);
 
   useEffect(() => {
     fetchPosts();
@@ -12,18 +14,15 @@ const App: React.FC = () => {
 
   const fetchPosts = (): void => {
     getPosts()
-      .then(({ data: { posts } }: IPost[] | any) => setPosts(posts))
+      .then(({ data }: IPost[] | any) => setPosts(data))
       .catch((err: Error) => console.log(err));
   };
 
   const handleSavePost = (e: React.FormEvent, formData: IPost): void => {
     e.preventDefault();
     addPost(formData)
-      .then(({ status, data }) => {
-        if (status !== 201) {
-          throw new Error('Error! Post not saved');
-        }
-        setPosts(data.posts);
+      .then(({ data }) => {
+        setPosts([...posts, data.value]);
       })
       .catch((err) => console.log(err));
   };
@@ -34,18 +33,15 @@ const App: React.FC = () => {
         if (status !== 200) {
           throw new Error('Error! Post not updated');
         }
-        setPosts(data.posts);
+        setPosts([...posts, data.value]);
       })
       .catch((err) => console.log(err));
   };
 
   const handleDeletePost = (_id: string): void => {
     deletePost(_id)
-      .then(({ status, data }) => {
-        if (status !== 200) {
-          throw new Error('Error! Post not deleted');
-        }
-        setPosts(data.posts);
+      .then(({ data }) => {
+        setPosts([...posts.filter((post) => post._id !== data.value._id)]);
       })
       .catch((err) => console.log(err));
   };
@@ -53,15 +49,22 @@ const App: React.FC = () => {
   return (
     <main className='App'>
       <h1>My Posts</h1>
-      <AddPost savePost={handleSavePost} />
-      {posts.map((post: IPost) => (
-        <PostItem
-          key={post._id}
-          updatePost={handleUpdatePost}
-          deletePost={handleDeletePost}
-          post={post}
-        />
-      ))}
+      <div>
+        {posts.map((post: IPost) => (
+          <PostItem
+            key={post._id}
+            updatePost={handleUpdatePost}
+            deletePost={handleDeletePost}
+            post={post}
+          />
+        ))}
+      </div>
+      <div>
+        <button onClick={() => setIsOpen(true)}>Add new</button>
+        <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+          <AddPost savePost={handleSavePost} />
+        </Modal>
+      </div>
     </main>
   );
 };

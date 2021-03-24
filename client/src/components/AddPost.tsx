@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
-
-type Props = {
+import React, { useState, FC } from 'react';
+interface IAddPostProps {
   savePost: (e: React.FormEvent, formData: IPost | any) => void;
-};
-
-const AddPost: React.FC<Props> = ({ savePost }) => {
+}
+const AddPost: FC<IAddPostProps> = ({ savePost }) => {
   const [formData, setFormData] = useState<IPost | {}>();
 
   const handleForm = (e: React.FormEvent<HTMLInputElement>): void => {

@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { FC } from 'react';
 
-type Props = PostProps & {
+interface IPostItemProps {
+  post: IPost;
   updatePost: (post: IPost) => void;
   deletePost: (_id: string) => void;
-};
+}
 
-const PostItem: React.FC<Props> = ({ post, updatePost, deletePost }) => {
+const PostItem: FC<IPostItemProps> = ({ post, updatePost, deletePost }) => {
   return (
     <div>
       <div>
@@ -13,7 +14,7 @@ const PostItem: React.FC<Props> = ({ post, updatePost, deletePost }) => {
         <span>{post.description}</span>
       </div>
       <div>
-        <button onClick={() => updatePost(post)}>Complete</button>
+        <button onClick={() => updatePost(post)}>Solded</button>
         <button onClick={() => deletePost(post._id)}>Delete</button>
       </div>
     </div>
