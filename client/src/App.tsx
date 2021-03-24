@@ -3,10 +3,13 @@ import PostItem from './components/PostItem';
 import AddPost from './components/AddPost';
 import { getPosts, addPost, updatePost, deletePost } from './API';
 import Modal from './components/Modal/Modal';
+import styles from './styles.module.scss';
+import WorkSection from './WorkSection/WorkSection';
+import Header from './Header/Header';
 
 const App: React.FC = () => {
   const [posts, setPosts] = useState<IPost[]>([]);
-  const [isOpen, setIsOpen] = useState<Boolean>(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   useEffect(() => {
     fetchPosts();
@@ -24,7 +27,7 @@ const App: React.FC = () => {
       .then(({ data }) => {
         setPosts([...posts, data.value]);
       })
-      .catch((err) => console.log(err));
+      .catch(err => console.log(err));
   };
 
   const handleUpdatePost = (post: IPost): void => {
@@ -35,37 +38,36 @@ const App: React.FC = () => {
         }
         setPosts([...posts, data.value]);
       })
-      .catch((err) => console.log(err));
+      .catch(err => console.log(err));
   };
 
   const handleDeletePost = (_id: string): void => {
     deletePost(_id)
       .then(({ data }) => {
-        setPosts([...posts.filter((post) => post._id !== data.value._id)]);
+        setPosts([...posts.filter(post => post._id !== data.value._id)]);
       })
-      .catch((err) => console.log(err));
+      .catch(err => console.log(err));
   };
 
   return (
-    <main className='App'>
-      <h1>My Posts</h1>
-      <div>
-        {posts.map((post: IPost) => (
-          <PostItem
-            key={post._id}
-            updatePost={handleUpdatePost}
-            deletePost={handleDeletePost}
-            post={post}
-          />
-        ))}
-      </div>
-      <div>
-        <button onClick={() => setIsOpen(true)}>Add new</button>
-        <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
-          <AddPost savePost={handleSavePost} />
-        </Modal>
-      </div>
-    </main>
+    <div className={styles.wrapper}>
+      <Header />
+      {<WorkSection />}
+      <main className='App'>
+        <h1>My Posts</h1>
+        <div>
+          {posts.map((post: IPost) => (
+            <PostItem key={post._id} updatePost={handleUpdatePost} deletePost={handleDeletePost} post={post} />
+          ))}
+        </div>
+        <div>
+          <button onClick={() => setIsOpen(true)}>Add new</button>
+          <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+            <AddPost savePost={handleSavePost} />
+          </Modal>
+        </div>
+      </main>
+    </div>
   );
 };
 

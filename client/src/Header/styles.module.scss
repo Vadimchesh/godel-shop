@@ -1,0 +1,64 @@
+@import '../assets/styles/common.module.scss';
+
+.head {
+  position: absolute;
+  width: 100vw;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 2rem 3rem;
+  font-family: $main-font;
+}
+
+.logo {
+  font-weight: 700;
+  line-height: 3rem;
+  a {
+    color: $headline-color;
+  }
+  span {
+    color: $second-color;
+  }
+  .notHome {
+    color: $base-color;
+  }
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 23rem;
+}
+
+.navMenu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 13.5rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1.2rem;
+}
+
+.login {
+  position: relative;
+  width: 2rem;
+  height: 2rem;
+  background-image: url(../assets/img/person.png);
+  border-radius: 0.6rem;
+  cursor: pointer;
+  span {
+    position: absolute;
+    display: inline-block;
+    right: -0.2rem;
+    top: -0.2rem;
+    width: 0.8rem;
+    height: 0.8rem;
+    border-radius: 50%;
+    border: 0.2rem solid white;
+    background-color: $second-color;
+  }
+}

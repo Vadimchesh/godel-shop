@@ -5,16 +5,16 @@ import styles from './styles.module.css';
 const modalElement = document.getElementById('modal-root');
 
 interface IModalProps {
-  isOpen: Boolean;
+  isOpen: boolean;
   onClose: () => void;
   children: string | ReactElement;
 }
 const Modal: FC<IModalProps> = ({ isOpen, onClose, children }) => {
   const handleEscape = useCallback(
-    (event) => {
+    event => {
       if (event.keyCode === 27) onClose();
     },
-    [onClose]
+    [onClose],
   );
 
   useEffect(() => {
@@ -30,18 +30,13 @@ const Modal: FC<IModalProps> = ({ isOpen, onClose, children }) => {
       isOpen ? (
         <div className={styles.modal}>
           <div className='modalOverlay' onClick={onClose} />
-          <span
-            role='button'
-            className={styles.modalClose}
-            aria-label='close'
-            onClick={onClose}
-          >
+          <span role='button' className={styles.modalClose} aria-label='close' onClick={onClose}>
             x
           </span>
           <div className={styles.modalBody}>{children}</div>
         </div>
       ) : null,
-      modalElement
+      modalElement,
     )
   );
 };

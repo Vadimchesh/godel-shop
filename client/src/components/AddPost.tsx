@@ -3,7 +3,7 @@ interface IAddPostProps {
   savePost: (e: React.FormEvent, formData: IPost | any) => void;
 }
 const AddPost: FC<IAddPostProps> = ({ savePost }) => {
-  const [formData, setFormData] = useState<IPost | {}>();
+  const [formData, setFormData] = useState<IPost | any>();
 
   const handleForm = (e: React.FormEvent<HTMLInputElement>): void => {
     setFormData({
@@ -13,7 +13,7 @@ const AddPost: FC<IAddPostProps> = ({ savePost }) => {
   };
 
   return (
-    <form onSubmit={(e) => savePost(e, formData)}>
+    <form onSubmit={e => savePost(e, formData)}>
       <div>
         <div>
           <label htmlFor='name'>Name</label>

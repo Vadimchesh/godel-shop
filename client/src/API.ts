@@ -10,58 +10,42 @@ export const getPosts = async (): Promise<AxiosResponse<ApiDataGetPosts>> => {
 };
 export const getPost = async (): Promise<AxiosResponse<ApiDataGetPost>> => {
   try {
-    const post: AxiosResponse<ApiDataGetPost> = await axios.get(
-      '/api/posts/_id'
-    );
+    const post: AxiosResponse<ApiDataGetPost> = await axios.get('/api/posts/_id');
     return post;
   } catch (error) {
     throw new Error(error);
   }
 };
 
-export const addPost = async (
-  formData: IPost
-): Promise<AxiosResponse<ApiDataAddPost>> => {
+export const addPost = async (formData: IPost): Promise<AxiosResponse<ApiDataAddPost>> => {
   try {
     const post: Omit<IPost, '_id'> = {
       name: formData.name,
       description: formData.description,
       status: false,
     };
-    const savePost: AxiosResponse<ApiDataAddPost> = await axios.post(
-      '/api/posts',
-      post
-    );
+    const savePost: AxiosResponse<ApiDataAddPost> = await axios.post('/api/posts', post);
     return savePost;
   } catch (error) {
     throw new Error(error);
   }
 };
 
-export const updatePost = async (
-  post: IPost
-): Promise<AxiosResponse<ApiDataUpdatePost>> => {
+export const updatePost = async (post: IPost): Promise<AxiosResponse<ApiDataUpdatePost>> => {
   try {
     const postUpdate: Pick<IPost, 'status'> = {
       status: false,
     };
-    const updatedPost: AxiosResponse<ApiDataUpdatePost> = await axios.put(
-      `/api/posts/${post._id}`,
-      postUpdate
-    );
+    const updatedPost: AxiosResponse<ApiDataUpdatePost> = await axios.put(`/api/posts/${post._id}`, postUpdate);
     return updatedPost;
   } catch (error) {
     throw new Error(error);
   }
 };
 
-export const deletePost = async (
-  _id: string
-): Promise<AxiosResponse<ApiDataDeletePost>> => {
+export const deletePost = async (_id: string): Promise<AxiosResponse<ApiDataDeletePost>> => {
   try {
-    const deletedPost: AxiosResponse<ApiDataDeletePost> = await axios.delete(
-      `/api/posts/${_id}`
-    );
+    const deletedPost: AxiosResponse<ApiDataDeletePost> = await axios.delete(`/api/posts/${_id}`);
     return deletedPost;
   } catch (error) {
     throw new Error(error);
