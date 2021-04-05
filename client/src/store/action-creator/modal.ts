@@ -5,7 +5,5 @@ export const openModal = () => {
 };
 
 export const closeModal = () => {
-  return {
-    type: ModalsActionTypes.CLOCE_MODAL,
-  };
+  return { type: ModalsActionTypes.CLOCE_MODAL };
 };
