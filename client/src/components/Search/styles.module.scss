@@ -1,0 +1,21 @@
+@import '../../assets/styles/common.module.scss';
+
+.search {
+  margin-bottom: 1rem;
+  input {
+    color: $second-headline-color;
+    padding: 0.1rem 2rem;
+    margin-top: 0.7rem;
+    font-size: 1rem;
+    outline: none;
+    border: none;
+    border-bottom: 0.1rem solid $second-headline-color;
+    background-image: url(../../assets/img/search.png);
+    background-position: 0.3rem 0rem;
+    background-repeat: no-repeat;
+    &:focus {
+      border-bottom: 2px solid $second-color;
+      color: $base-color;
+    }
+  }
+}
