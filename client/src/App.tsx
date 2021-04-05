@@ -7,7 +7,7 @@ const App: React.FC = () => {
   return (
     <div className={styles.wrapper}>
       <Header />
-      {<WorkSection />}
+      <WorkSection />
     </div>
   );
 };
