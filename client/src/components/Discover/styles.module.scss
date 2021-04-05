@@ -1,0 +1,46 @@
+@import '../../assets/styles/common.module.scss';
+
+.main {
+  @include padding-worksection;
+  font-style: normal;
+  line-height: 1.25rem;
+  .headline h1 {
+    font-size: 2.25rem;
+    margin-bottom: 1.55rem;
+    font-weight: 300;
+  }
+  .categories {
+    display: flex;
+    margin-top: 1rem;
+    margin-bottom: 2.25rem;
+    a {
+      position: relative;
+      margin-right: 1rem;
+      font-size: 1.25rem;
+      color: $second-headline-color;
+      &:hover {
+        color: $second-color;
+      }
+      &:active {
+        color: $second-color;
+      }
+      &:active::after {
+        position: absolute;
+        content: ' ';
+        height: 0.25rem;
+        width: 0.25rem;
+        left: 50%;
+        top: 2rem;
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='4' height='4' viewBox='0 0 4 4' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3ccircle cx='2' cy='2' r='2' fill='%23FF532E'/%3e%3c/svg%3e");
+      }
+    }
+
+    a h2 {
+      font-weight: 300;
+    }
+  }
+  .list {
+    display: flex;
+    margin-right: 0.625rem;
+  }
+}

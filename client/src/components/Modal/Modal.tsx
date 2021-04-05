@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useCallback, ReactElement } from 'react';
 import { createPortal } from 'react-dom';
-import styles from './styles.module.css';
+import styles from './styles.module.scss';
 
 const modalElement = document.getElementById('modal-root');
 
@@ -22,7 +22,7 @@ const Modal: FC<IModalProps> = ({ isOpen, onClose, children }) => {
     return () => {
       document.removeEventListener('keydown', handleEscape, false);
     };
-  }, [handleEscape, isOpen]);
+  }, [handleEscape, onClose]);
 
   return (
     modalElement &&
