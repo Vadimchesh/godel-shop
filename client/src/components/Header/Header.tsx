@@ -19,6 +19,12 @@ export default function Header(): ReactElement {
               <NavLink to='/discover'>Discover</NavLink>
             </div>
             <div>
+              <NavLink to='/login'>Login</NavLink>
+            </div>
+            <div>
+              <NavLink to='/registration'>Registration</NavLink>
+            </div>
+            <div>
               <NavLink to='/blog'>Blog</NavLink>
             </div>
             <div>

@@ -1,5 +1,3 @@
-import { TypedUseSelectorHook } from 'react-redux';
-
 export enum PostsActionTypes {
   FETCH_POSTS = 'FETCH_POSTS',
   FETCH_POSTS_ONE = 'FETCH_POSTS_ONE',
@@ -28,7 +26,7 @@ interface PostsSaveAction {
 }
 interface PostUpdateAction {
   type: PostsActionTypes.UPDATE_POST;
-  payload: formData;
+  payload: [any];
 }
 interface PostDeleteAction {
   type: PostsActionTypes.DELETE_POST;

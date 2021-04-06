@@ -47,9 +47,8 @@ export const addPost = (formData: formData) => {
 export const updatePost = async (id: string, formData: IPost) => {
   return async (dispatch: Dispatch<PostAction>) => {
     try {
-      const postUpdate: Pick<IPost, 'formData'> = {
-        formData: formData,
-      };
+      const postUpdate: formData = { name: formData.name, description: formData.description, status: formData.status };
+      dispatch({ type: PostsActionTypes.UPDATE_POST, payload: [postUpdate] });
       const updatedPost = await axios.put(`/api/posts/${id}`, postUpdate);
       return updatedPost;
     } catch (e) {

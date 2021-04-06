@@ -1,7 +1,8 @@
 {
-    "env": {
-        "MONGO_USER": "admin",
-        "MONGO_PASSWORD": "5EsrxD2MUV2g7jvI",
-        "MONGO_DB": "myFirstDatabase"
-    }
+  "env": {
+    "MONGO_USER": "admin",
+    "MONGO_PASSWORD": "5EsrxD2MUV2g7jvI",
+    "MONGO_DB": "myFirstDatabase",
+    "SECRET_KEY": "jopaMamonta"
+  }
 }
