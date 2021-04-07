@@ -4,8 +4,8 @@ const initialState: IAuthReducer = {
   email: '',
   password: '',
   secondPassword: '',
-  user: [],
-  token: [],
+  currentUser: null,
+  isAuth: false,
 };
 
 export const authReducer = (state = initialState, action: AuthAction): IAuthReducer => {
@@ -16,10 +16,11 @@ export const authReducer = (state = initialState, action: AuthAction): IAuthRedu
       return { ...state, password: action.payload };
     case AuthActionTypes.CHANGE_SECOND_PASSWORD:
       return { ...state, secondPassword: action.payload };
-    case AuthActionTypes.LOGIN:
-      return { ...state, user: [] };
-    case AuthActionTypes.REGISTRATION:
-      return { ...state, token: [] };
+    case AuthActionTypes.SET_USER:
+      return { ...state, currentUser: action.payload, isAuth: true };
+    case AuthActionTypes.LOGOUT:
+      localStorage.removeItem('token');
+      return { ...state, currentUser: null, isAuth: false };
     default:
       return state;
   }

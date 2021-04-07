@@ -13,23 +13,37 @@ export const changeSecondPassword = (e: string) => {
 };
 
 export const registration = async (email: string, password: string) => {
-  return async (dispatch: Dispatch<AuthAction>) => {
+  return async () => {
     try {
-      const user = await delivery.ApiAuth.registration(email, password);
-      dispatch({ type: AuthActionTypes.REGISTRATION, userRegistration: user });
-      return user;
+      const response = await delivery.ApiAuth.registration(email, password);
+      return console.log(response.data.message);
     } catch (e) {
-      console.log(e);
+      console.log(e.response.data.message);
     }
   };
 };
 export const login = async (email: string, password: string) => {
   return async (dispatch: Dispatch<AuthAction>) => {
     try {
-      const userToken = await delivery.ApiAuth.login(email, password);
-      return userToken;
+      const response = await delivery.ApiAuth.login(email, password);
+      dispatch({ type: AuthActionTypes.SET_USER, payload: response.data.user });
+      localStorage.setItem('token', response.data.token);
+      return console.log(response);
     } catch (e) {
-      console.log(e);
+      console.log(e.response.data.console.error);
+    }
+  };
+};
+export const auth = async () => {
+  return async (dispatch: Dispatch<AuthAction>) => {
+    try {
+      const response = await delivery.ApiAuth.auth();
+      dispatch({ type: AuthActionTypes.SET_USER, payload: response.data.user });
+      localStorage.setItem('token', response.data.token);
+      return console.log(response);
+    } catch (e) {
+      console.log(e.response.data.console.error);
+      localStorage.removeItem('token');
     }
   };
 };

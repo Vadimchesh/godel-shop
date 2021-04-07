@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import styles from './styles.module.scss';
 import Blog from '../Blog/Blog';
@@ -11,7 +11,7 @@ import BlogPostPage from '../BlogPostPage/BlogPostPage';
 import Login from '../Auth/Login/Login';
 import Registration from '../Auth/Registration/Registration';
 
-export default function WorkSection() {
+export default function WorkSection(): ReactElement {
   return (
     <div className={styles.workSection}>
       <Switch>

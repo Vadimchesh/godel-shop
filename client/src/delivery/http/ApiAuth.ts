@@ -13,8 +13,19 @@ class ApiAuth implements IApiAuth {
 
   login = async (email: string, password: string): Promise<AxiosResponse> => {
     try {
-      const user: AxiosResponse = await axios.post('/auth/login', { email, password });
-      return user;
+      const response: AxiosResponse = await axios.post('/auth/login', { email, password });
+      return response;
+    } catch (e) {
+      throw new Error(e);
+    }
+  };
+
+  auth = async (): Promise<AxiosResponse> => {
+    try {
+      const response: AxiosResponse = await axios.post('/auth/login', {
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+      });
+      return response;
     } catch (e) {
       throw new Error(e);
     }

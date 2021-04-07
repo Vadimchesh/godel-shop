@@ -8,11 +8,6 @@ export enum PostsActionTypes {
   POSTS_ERROR = 'FETCH_POSTS_ERROR',
 }
 
-interface PostsAction {
-  type: string;
-  payload?: any;
-}
-
 interface FetchPostsAction {
   type: PostsActionTypes.FETCH_POSTS;
 }

@@ -1,5 +1,4 @@
 import React, { useState, FC } from 'react';
-import { useTypedSelector } from '../../hooks/useTypedSelector';
 interface IEditPostProps {
   updatePost: (e: React.FormEvent, formData: IPost | any) => void;
 }
