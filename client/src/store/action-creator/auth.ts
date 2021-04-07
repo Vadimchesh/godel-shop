@@ -12,7 +12,7 @@ export const changeSecondPassword = (e: string) => {
   return { type: AuthActionTypes.CHANGE_SECOND_PASSWORD, payload: e };
 };
 
-export const registration = async (email: string, password: string) => {
+export const registration = (email: string, password: string) => {
   return async () => {
     try {
       const response = await delivery.ApiAuth.registration(email, password);
@@ -22,7 +22,7 @@ export const registration = async (email: string, password: string) => {
     }
   };
 };
-export const login = async (email: string, password: string) => {
+export const login = (email: string, password: string) => {
   return async (dispatch: Dispatch<AuthAction>) => {
     try {
       const response = await delivery.ApiAuth.login(email, password);
@@ -34,7 +34,17 @@ export const login = async (email: string, password: string) => {
     }
   };
 };
-export const auth = async () => {
+export const logout = () => {
+  return async (dispatch: Dispatch<AuthAction>) => {
+    try {
+      dispatch({ type: AuthActionTypes.LOGOUT });
+      return;
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};
+export const auth = () => {
   return async (dispatch: Dispatch<AuthAction>) => {
     try {
       const response = await delivery.ApiAuth.auth();

@@ -7,14 +7,14 @@ export default function Registration(): ReactElement {
   const { email, password, secondPassword } = useTypedSelector(state => state.auth);
   const { changeEmail, changePassword, changeSecondPassword, registration } = useActions();
 
-  const handleRegistration = (e: React.FormEvent, email: string, password: string): void => {
+  const handleRegistration = (e: React.FormEvent): void => {
     e.preventDefault();
     registration(email, password);
   };
 
   return (
     <div className={styles.registration}>
-      <form onSubmit={e => handleRegistration(e, email, password)}>
+      <form onSubmit={e => handleRegistration(e)}>
         <div>
           <div>
             <label htmlFor='name'>Email</label>
@@ -29,9 +29,7 @@ export default function Registration(): ReactElement {
             <input value={secondPassword} onChange={e => changeSecondPassword(e.currentTarget.value)} type='password' id='secondPassword' />
           </div>
         </div>
-        <button disabled={(password === secondPassword) != null ? false : true} onClick={async () => await registration(email, password)}>
-          Login
-        </button>
+        <button disabled={(password === secondPassword) != null ? false : true}>Login</button>
       </form>
       <div>{password}</div>
     </div>

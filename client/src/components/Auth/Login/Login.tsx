@@ -7,14 +7,14 @@ export default function Login(): ReactElement {
   const { email, password } = useTypedSelector(state => state.auth);
   const { changeEmail, changePassword, login } = useActions();
 
-  const handleLogin = (e: React.FormEvent, email: string, password: string): void => {
+  const handleLogin = (e: React.FormEvent): void => {
     e.preventDefault();
     login(email, password);
   };
 
   return (
     <div className={styles.login}>
-      <form onSubmit={e => handleLogin(e, email, password)}>
+      <form onSubmit={e => handleLogin(e)}>
         <div>
           <div>
             <label htmlFor='email'>Email</label>
