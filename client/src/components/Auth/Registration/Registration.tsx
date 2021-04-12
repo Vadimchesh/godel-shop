@@ -4,12 +4,12 @@ import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { useActions } from '../../../hooks/useAction';
 
 export default function Registration(): ReactElement {
-  const { email, password, secondPassword } = useTypedSelector(state => state.auth);
+  const { email, password, passwordConfirmation } = useTypedSelector(state => state.auth);
   const { changeEmail, changePassword, changeSecondPassword, registration } = useActions();
 
   const handleRegistration = (e: React.FormEvent): void => {
     e.preventDefault();
-    registration(email, password);
+    registration(email, password, passwordConfirmation);
   };
 
   return (
@@ -26,12 +26,16 @@ export default function Registration(): ReactElement {
           </div>
           <div>
             <label htmlFor='secondPassword'>Password</label>
-            <input value={secondPassword} onChange={e => changeSecondPassword(e.currentTarget.value)} type='password' id='secondPassword' />
+            <input
+              value={passwordConfirmation}
+              onChange={e => changeSecondPassword(e.currentTarget.value)}
+              type='password'
+              id='secondPassword'
+            />
           </div>
         </div>
-        <button disabled={(password === secondPassword) != null ? false : true}>Login</button>
+        <button disabled={(password === passwordConfirmation) != null ? false : true}>Registration</button>
       </form>
-      <div>{password}</div>
     </div>
   );
 }

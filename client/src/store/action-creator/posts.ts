@@ -44,7 +44,7 @@ export const addPost = (formData: formData) => {
   };
 };
 
-export const updatePost = async (id: string, formData: IPost) => {
+export const updatePost = (id: string, formData: IPost) => {
   return async (dispatch: Dispatch<PostAction>) => {
     try {
       const postUpdate: formData = { name: formData.name, description: formData.description, status: formData.status };

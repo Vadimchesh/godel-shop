@@ -1,24 +1,24 @@
 import { Dispatch } from 'redux';
 import delivery from '../../delivery';
-import { AuthActionTypes, AuthAction } from '../../types/auth';
+import { AuthActionTypes, AuthAction, ChangeEmail, ChangePassword, ChangeSecondPassword } from '../../types/auth';
 
-export const changeEmail = (e: string) => {
+export const changeEmail = (e: string): ChangeEmail => {
   return { type: AuthActionTypes.CHANGE_EMAIL, payload: e };
 };
-export const changePassword = (e: string) => {
+export const changePassword = (e: string): ChangePassword => {
   return { type: AuthActionTypes.CHANGE_PASSWORD, payload: e };
 };
-export const changeSecondPassword = (e: string) => {
+export const changeSecondPassword = (e: string): ChangeSecondPassword => {
   return { type: AuthActionTypes.CHANGE_SECOND_PASSWORD, payload: e };
 };
 
-export const registration = (email: string, password: string) => {
-  return async () => {
+export const registration = (email: string, password: string, secondPassword: string) => {
+  return async (dispatch: Dispatch<AuthAction>) => {
     try {
-      const response = await delivery.ApiAuth.registration(email, password);
-      return console.log(response.data.message);
+      const response = await delivery.ApiAuth.registration(email, password, secondPassword);
+      dispatch({ type: AuthActionTypes.SET_USER, payload: response.data.user });
     } catch (e) {
-      console.log(e.response.data.message);
+      console.log(e.response);
     }
   };
 };
@@ -30,7 +30,7 @@ export const login = (email: string, password: string) => {
       localStorage.setItem('token', response.data.token);
       return console.log(response);
     } catch (e) {
-      console.log(e.response.data.console.error);
+      console.log('User not found');
     }
   };
 };
@@ -48,12 +48,12 @@ export const auth = () => {
   return async (dispatch: Dispatch<AuthAction>) => {
     try {
       const response = await delivery.ApiAuth.auth();
+      console.log(response);
       dispatch({ type: AuthActionTypes.SET_USER, payload: response.data.user });
       localStorage.setItem('token', response.data.token);
-      return console.log(response);
+      return response;
     } catch (e) {
-      console.log(e.response.data.console.error);
-      localStorage.removeItem('token');
+      console.log(e);
     }
   };
 };

@@ -3,7 +3,7 @@ import { AuthAction, AuthActionTypes, IAuthReducer } from '../../types/auth';
 const initialState: IAuthReducer = {
   email: '',
   password: '',
-  secondPassword: '',
+  passwordConfirmation: '',
   currentUser: null,
   isAuth: false,
 };
@@ -15,7 +15,7 @@ export const authReducer = (state = initialState, action: AuthAction): IAuthRedu
     case AuthActionTypes.CHANGE_PASSWORD:
       return { ...state, password: action.payload };
     case AuthActionTypes.CHANGE_SECOND_PASSWORD:
-      return { ...state, secondPassword: action.payload };
+      return { ...state, passwordConfirmation: action.payload };
     case AuthActionTypes.SET_USER:
       return { ...state, currentUser: action.payload, isAuth: true };
     case AuthActionTypes.LOGOUT:

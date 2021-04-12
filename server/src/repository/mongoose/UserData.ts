@@ -14,6 +14,13 @@ class UserData {
     const user = await User.findOne({ email });
     return user;
   }
+  async getOneByID(_id: string) {
+    if (!_id) {
+      throw new Error('не корректный email');
+    }
+    const user = await User.findOne({ _id });
+    return user;
+  }
 }
 
 export default new UserData();

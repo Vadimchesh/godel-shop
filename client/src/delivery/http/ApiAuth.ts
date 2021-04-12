@@ -2,9 +2,9 @@ import axios, { AxiosResponse } from 'axios';
 import { IApiAuth } from '../layerInterface';
 
 class ApiAuth implements IApiAuth {
-  registration = async (email: string, password: string): Promise<AxiosResponse> => {
+  registration = async (email: string, password: string, passwordConfirmation: string): Promise<AxiosResponse> => {
     try {
-      const succsessRegistration: AxiosResponse = await axios.post('/auth/registration', { email, password });
+      const succsessRegistration: AxiosResponse = await axios.post('/auth/registration', { email, password, passwordConfirmation });
       return succsessRegistration;
     } catch (e) {
       throw new Error(e);
@@ -22,7 +22,7 @@ class ApiAuth implements IApiAuth {
 
   auth = async (): Promise<AxiosResponse> => {
     try {
-      const response: AxiosResponse = await axios.post('/auth/login', {
+      const response: AxiosResponse = await axios.get('/auth/auth', {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       });
       return response;

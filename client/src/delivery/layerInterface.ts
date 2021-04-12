@@ -13,7 +13,7 @@ export interface IApiPosts {
   deletePost: (id: string) => Promise<AxiosResponse<ApiDataDeletePost>>;
 }
 export interface IApiAuth {
-  registration: (email: string, password: string) => Promise<AxiosResponse<ApiUserRegistration>>;
+  registration: (email: string, password: string, secondPassword: string) => Promise<AxiosResponse<ApiUserRegistration>>;
   login: (email: string, password: string) => Promise<AxiosResponse<ApiUserLogin>>;
 }
 

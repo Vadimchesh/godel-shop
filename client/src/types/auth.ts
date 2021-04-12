@@ -5,23 +5,23 @@ export enum AuthActionTypes {
   SET_USER = 'SET_USER',
   LOGOUT = 'LOGOUT',
 }
-interface ChangeEmail {
+export interface ChangeEmail {
   type: AuthActionTypes.CHANGE_EMAIL;
   payload: string;
 }
-interface ChangePassword {
+export interface ChangePassword {
   type: AuthActionTypes.CHANGE_PASSWORD;
   payload: string;
 }
-interface ChangeSecondPassword {
+export interface ChangeSecondPassword {
   type: AuthActionTypes.CHANGE_SECOND_PASSWORD;
   payload: string;
 }
-interface SetUser {
+export interface SetUser {
   type: AuthActionTypes.SET_USER;
   payload: IUser | null;
 }
-interface Logout {
+export interface Logout {
   type: AuthActionTypes.LOGOUT;
 }
 
@@ -30,7 +30,7 @@ export type AuthAction = ChangeEmail | ChangePassword | ChangeSecondPassword | S
 export interface IAuthReducer {
   email: string;
   password: string;
-  secondPassword: string;
+  passwordConfirmation: string;
   currentUser: IUser | null;
   isAuth: boolean;
 }

@@ -1,6 +1,6 @@
 import { IPost } from '../repository/mongoose/types/post';
 import { IUser } from '../repository/mongoose/types/user';
-
+import { IFuncResultModel } from '../modals/index';
 export interface IUseCases {
   PostsService: IPostsService;
   AuthService: IAuthService;
@@ -14,6 +14,12 @@ export interface IPostsService {
   deletePost: (id: string) => Promise<IPost | null>;
 }
 export interface IAuthService {
-  getUser: (email: string) => Promise<IUser | null>;
-  addUser: (email: string, password: string) => Promise<IUser | null>;
+  getUser: (email: string) => Promise<IUser>;
+  addUser: (data: IAddNewUser) => Promise<IFuncResultModel<IUser>>;
+}
+
+export interface IAddNewUser {
+  email: string;
+  password: string;
+  passwordConfirmation: string;
 }
