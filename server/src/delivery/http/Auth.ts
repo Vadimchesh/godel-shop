@@ -11,4 +11,20 @@ AuthRouter.post('/registration', async (req: Request, res: Response) => {
   return res.status(500).json(error.message || new Error('UseCases undefined error'));
 });
 
+AuthRouter.post('/login', async (req: Request, res: Response) => {
+  const { value, error } = await UseCases.AuthService.login(req.body);
+  if (!error) {
+    return res.status(200).json(value);
+  }
+  return res.status(500).json(error.message || new Error('UseCases undefined error'));
+});
+
+AuthRouter.post('/refresh', async (req: Request, res: Response) => {
+  const { value, error } = await UseCases.AuthService.refresh(req.body);
+  if (!error) {
+    return res.status(200).json(value);
+  }
+  return res.status(500).json(error.message || new Error('UseCases undefined error'));
+});
+
 export default AuthRouter;

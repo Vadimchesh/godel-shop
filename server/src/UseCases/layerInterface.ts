@@ -1,5 +1,6 @@
 import { IPost } from '../repository/mongoose/types/post';
 import { IUser } from '../repository/mongoose/types/user';
+import { IRefreshToken } from '../repository/mongoose/types/refreshToken';
 import { IFuncResultModel } from '../modals/index';
 export interface IUseCases {
   PostsService: IPostsService;
@@ -16,10 +17,28 @@ export interface IPostsService {
 export interface IAuthService {
   getUser: (email: string) => Promise<IUser>;
   addUser: (data: IAddNewUser) => Promise<IFuncResultModel<IUser>>;
+  login: (data: ILogin) => Promise<IFuncResultModel<ILoginTokens>>;
+  refresh: (userToken: IRefreshTokenUser) => Promise<IFuncResultModel<ILoginTokens>>;
 }
 
 export interface IAddNewUser {
   email: string;
   password: string;
   passwordConfirmation: string;
+}
+export interface ILogin {
+  email: string;
+  password: string;
+}
+export interface ILoginTokens {
+  accessToken: string;
+  refreshToken: string;
+}
+export interface IissueTokenPair {
+  token: string;
+  refreshToken: string;
+}
+
+export interface IRefreshTokenUser {
+  refreshTokenUser: string;
 }
