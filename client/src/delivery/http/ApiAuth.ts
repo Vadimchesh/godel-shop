@@ -1,6 +1,18 @@
-import axios, { AxiosResponse } from 'axios';
-import { IApiAuth } from '../layerInterface';
+import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
+import { useTypedSelector } from '../../hooks/useTypedSelector';
+import { IApiAuth, ApiUserLogin } from '../layerInterface';
 
+const axiosApiInstance = axios.create();
+
+axiosApiInstance.interceptors.request.use((config: AxiosRequestConfig) => {
+  const newConfig = { ...config };
+  const { accessToken } = useTypedSelector(state => state.auth);
+  const token = accessToken;
+  if (token) {
+    newConfig.headers['Authorization'] = 'Bearer ' + token;
+  }
+  return newConfig;
+});
 class ApiAuth implements IApiAuth {
   registration = async (email: string, password: string, passwordConfirmation: string): Promise<AxiosResponse> => {
     try {
@@ -11,7 +23,7 @@ class ApiAuth implements IApiAuth {
     }
   };
 
-  login = async (email: string, password: string): Promise<AxiosResponse> => {
+  login = async (email: string, password: string): Promise<AxiosResponse<ApiUserLogin>> => {
     try {
       const response: AxiosResponse = await axios.post('/auth/login', { email, password });
       return response;
@@ -20,11 +32,9 @@ class ApiAuth implements IApiAuth {
     }
   };
 
-  auth = async (): Promise<AxiosResponse> => {
+  refresh = async (token: string): Promise<AxiosResponse> => {
     try {
-      const response: AxiosResponse = await axios.get('/auth/auth', {
-        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
-      });
+      const response: AxiosResponse = await axios.post('/auth/refresh', { token });
       return response;
     } catch (e) {
       throw new Error(e);

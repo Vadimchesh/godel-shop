@@ -2,14 +2,13 @@ import refreshToken from './models/refreshToken';
 import { IRefreshToken } from './types/refreshToken';
 
 export interface IDataCreateToken {
-  userID: string;
+  userId: string;
   token: string;
-  expires: Date;
 }
 class RefreshTokenData {
   async createToken(data: IDataCreateToken): Promise<IRefreshToken> {
-    const { userID, token, expires } = data;
-    const createdToken = new refreshToken({ userID, token, expires });
+    const { userId, token } = data;
+    const createdToken = new refreshToken({ userId, token });
     await createdToken.save();
     return createdToken;
   }

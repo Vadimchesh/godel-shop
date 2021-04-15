@@ -50,6 +50,6 @@ export type ApiUserRegistration = {
   password: string;
 };
 export type ApiUserLogin = {
-  email: string;
-  password: string;
+  accessToken: string;
+  refreshToken: string;
 };

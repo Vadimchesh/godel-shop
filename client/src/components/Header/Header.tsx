@@ -9,7 +9,6 @@ import styles from './styles.module.scss';
 export default function Header(): ReactElement {
   const { isAuth } = useTypedSelector(state => state.auth);
   const { logout } = useActions();
-
   return (
     <div className={styles.head}>
       <div className={styles.header}>

@@ -4,7 +4,6 @@ import { IAuthService, IAddNewUser, ILogin, ILoginTokens, IissueTokenPair, IRefr
 import UserValidateShema from '../ValidateService/UserValidateShema';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import { v4 as uuidv4 } from 'uuid';
 import { IFuncResultModel } from '../../modals/index';
 import { IUser } from '../../repository/mongoose/types/user';
 
@@ -56,12 +55,17 @@ class AuthService implements IAuthService {
 
   refresh = async (userToken: IRefreshTokenUser): Promise<IFuncResultModel<ILoginTokens>> => {
     const { refreshTokenUser } = userToken;
-    const dbToken = await RefreshTokenData.getOne(refreshTokenUser);
-    if (!dbToken) {
-      return { error: new Error('Incorect token') };
+    const { token } = await RefreshTokenData.getOne(refreshTokenUser);
+    if (!token) {
+      return { error: new Error('Incorect data token') };
     }
-    await RefreshTokenData.remove(refreshTokenUser);
-    const { refreshToken, token } = await this.issueTokenPair(dbToken.userId);
+    const decoded = jwt.decode(token, { complete: true });
+    const expireTime: number = decoded.payload.exp;
+    const currentTime = Math.floor(Date.now() / 1000);
+    let refreshToken: string = token;
+    if (currentTime < expireTime) {
+      refreshToken = await this.generateNewRefreshToken(decoded?.userId);
+    }
     return {
       value: {
         refreshToken: refreshToken,
@@ -70,19 +74,29 @@ class AuthService implements IAuthService {
     };
   };
 
-  issueTokenPair = async (userId: string): Promise<IissueTokenPair> => {
-    const newRefreshToken = uuidv4();
-    await RefreshTokenData.createToken({
-      userID: userId,
-      token: newRefreshToken,
-      expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
-    });
-    const accessToken = jwt.sign({ id: userId }, `${process.env.SECRET_KEY}`, { expiresIn: 60 * 15 });
+  private issueTokenPair = async (userId: string): Promise<IissueTokenPair> => {
+    const accessToken = this.generateNewAccessToken(userId);
+    const refreshToken = await this.generateNewRefreshToken(userId);
 
     return {
       token: accessToken,
-      refreshToken: newRefreshToken,
+      refreshToken: refreshToken,
     };
+  };
+
+  private generateNewAccessToken = (userId: string) => {
+    const accessToken = jwt.sign({ id: userId }, `${process.env.SECRET_KEY}`, { expiresIn: 60 * 15 });
+    return accessToken;
+  };
+
+  private generateNewRefreshToken = async (userId: string) => {
+    const newRefreshToken = jwt.sign({ id: userId }, `${process.env.SECRET_KEY}`, { expiresIn: '10 days' });
+    const data = {
+      userId,
+      token: newRefreshToken,
+    };
+    const { token } = await RefreshTokenData.createToken(data);
+    return token;
   };
 }
 export default new AuthService();

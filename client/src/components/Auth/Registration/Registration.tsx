@@ -2,15 +2,19 @@ import React, { ReactElement } from 'react';
 import styles from './styles.module.scss';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { useActions } from '../../../hooks/useAction';
+import { useHistory } from 'react-router-dom';
 
 export default function Registration(): ReactElement {
-  const { email, password, passwordConfirmation } = useTypedSelector(state => state.auth);
+  const { email, password, passwordConfirmation, isAuth } = useTypedSelector(state => state.auth);
   const { changeEmail, changePassword, changeSecondPassword, registration } = useActions();
 
-  const handleRegistration = (e: React.FormEvent): void => {
+  const history = useHistory();
+
+  const handleRegistration = async (e: React.FormEvent) => {
     e.preventDefault();
-    registration(email, password, passwordConfirmation);
+    await registration(email, password, passwordConfirmation);
   };
+  !isAuth ? null : history.push('/profile');
 
   return (
     <div className={styles.registration}>
