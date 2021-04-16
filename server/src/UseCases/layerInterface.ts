@@ -1,6 +1,5 @@
 import { IPost } from '../repository/mongoose/types/post';
 import { IUser } from '../repository/mongoose/types/user';
-import { IRefreshToken } from '../repository/mongoose/types/refreshToken';
 import { IFuncResultModel } from '../modals/index';
 export interface IUseCases {
   PostsService: IPostsService;
@@ -41,4 +40,8 @@ export interface IissueTokenPair {
 
 export interface IRefreshTokenUser {
   refreshTokenUser: string;
+}
+
+export interface ITokenSub {
+  id: string;
 }

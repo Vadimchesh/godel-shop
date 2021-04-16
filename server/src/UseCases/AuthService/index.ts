@@ -1,6 +1,5 @@
 import UserData from '../../repository/mongoose/UserData';
-import RefreshTokenData from '../../repository/mongoose/RefreshTokenData';
-import { IAuthService, IAddNewUser, ILogin, ILoginTokens, IissueTokenPair, IRefreshTokenUser } from '../layerInterface';
+import { IAuthService, IAddNewUser, ILogin, ILoginTokens, IissueTokenPair, IRefreshTokenUser, ITokenSub } from '../layerInterface';
 import UserValidateShema from '../ValidateService/UserValidateShema';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
@@ -22,8 +21,8 @@ class AuthService implements IAuthService {
       if (currentEmailUser) {
         return { error: new Error('Incorect email') };
       }
-      const hashPassword = await bcrypt.hash(validatedData.password, 8);
-      const user: IUser = await UserData.createUser(validatedData.email, hashPassword);
+      const hashPassword = await bcrypt.hash(validatedData?.password, 8);
+      const user: IUser = await UserData.createUser(validatedData?.email, hashPassword);
       return { value: user };
     } catch (e) {
       return { error: new Error('User not added') };
@@ -40,7 +39,7 @@ class AuthService implements IAuthService {
       if (!hashPassword) {
         return { error: new Error('Incorect password') };
       }
-      const { refreshToken, token } = await this.issueTokenPair(currenUser._id);
+      const { refreshToken, token } = await this.issueTokenPair(currenUser?._id);
 
       return {
         value: {
@@ -54,49 +53,31 @@ class AuthService implements IAuthService {
   };
 
   refresh = async (userToken: IRefreshTokenUser): Promise<IFuncResultModel<ILoginTokens>> => {
-    const { refreshTokenUser } = userToken;
-    const { token } = await RefreshTokenData.getOne(refreshTokenUser);
-    if (!token) {
-      return { error: new Error('Incorect data token') };
+    try {
+      const { refreshTokenUser } = userToken;
+      const decoded = jwt.verify(refreshTokenUser, `${process.env.SECRET_KEY}`) as ITokenSub;
+      const { token, refreshToken } = this.issueTokenPair(decoded?.id);
+      return {
+        value: {
+          refreshToken: refreshToken,
+          accessToken: token,
+        },
+      };
+    } catch (e) {
+      {
+        return { error: new Error(`You have not access to service ${e}`) };
+      }
     }
-    const decoded = jwt.decode(token, { complete: true });
-    const expireTime: number = decoded.payload.exp;
-    const currentTime = Math.floor(Date.now() / 1000);
-    let refreshToken: string = token;
-    if (currentTime < expireTime) {
-      refreshToken = await this.generateNewRefreshToken(decoded?.userId);
-    }
-    return {
-      value: {
-        refreshToken: refreshToken,
-        accessToken: token,
-      },
-    };
   };
 
-  private issueTokenPair = async (userId: string): Promise<IissueTokenPair> => {
-    const accessToken = this.generateNewAccessToken(userId);
-    const refreshToken = await this.generateNewRefreshToken(userId);
-
+  private issueTokenPair = (userId: string) => {
+    const accessToken = jwt.sign({ id: userId }, process.env.SET_ACCESS_TOKEN, { expiresIn: 60 * 15 });
+    const refreshToken = jwt.sign({ id: userId }, process.env.SECRET_KEY, { expiresIn: '10 days' });
     return {
       token: accessToken,
       refreshToken: refreshToken,
     };
   };
-
-  private generateNewAccessToken = (userId: string) => {
-    const accessToken = jwt.sign({ id: userId }, `${process.env.SECRET_KEY}`, { expiresIn: 60 * 15 });
-    return accessToken;
-  };
-
-  private generateNewRefreshToken = async (userId: string) => {
-    const newRefreshToken = jwt.sign({ id: userId }, `${process.env.SECRET_KEY}`, { expiresIn: '10 days' });
-    const data = {
-      userId,
-      token: newRefreshToken,
-    };
-    const { token } = await RefreshTokenData.createToken(data);
-    return token;
-  };
 }
+
 export default new AuthService();
