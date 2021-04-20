@@ -16,7 +16,7 @@ axiosApiInstance.interceptors.request.use((config: AxiosRequestConfig) => {
 class ApiAuth implements IApiAuth {
   registration = async (email: string, password: string, passwordConfirmation: string): Promise<AxiosResponse> => {
     try {
-      const succsessRegistration: AxiosResponse = await axios.post('/api//auth/registration', { email, password, passwordConfirmation });
+      const succsessRegistration: AxiosResponse = await axios.post('/api/auth/registration', { email, password, passwordConfirmation });
       return succsessRegistration;
     } catch (e) {
       throw new Error(e);

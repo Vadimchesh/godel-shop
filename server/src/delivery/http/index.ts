@@ -6,7 +6,8 @@ const app: express.Application = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/api', routePost);
-app.use('/api/auth', AuthRouter);
+app.use('/api');
+app.use('/posts', routePost);
+app.use('/auth', AuthRouter);
 
 export default app;

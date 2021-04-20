@@ -12,7 +12,7 @@ PostRoute.get('/posts', async (req, res) => {
   }
 });
 
-PostRoute.get('/posts/:id', async (req, res) => {
+PostRoute.get('/:id', async (req, res) => {
   const value = await UseCases.PostsService.getPost(req.params.id);
   try {
     res.status(200).json({ message: 'Posts display', value });
@@ -21,7 +21,7 @@ PostRoute.get('/posts/:id', async (req, res) => {
   }
 });
 
-PostRoute.post('/posts', async (req, res) => {
+PostRoute.post('/', async (req, res) => {
   const value = await UseCases.PostsService.addPost(req.body);
   try {
     res.status(200).json({ message: 'Post added', value });
@@ -30,7 +30,7 @@ PostRoute.post('/posts', async (req, res) => {
   }
 });
 
-PostRoute.put('/posts/:id', async (req, res) => {
+PostRoute.put('/:id', async (req, res) => {
   const value = await UseCases.PostsService.updatePost(req.body);
   try {
     res.status(200).json({ message: 'Post updated', value });
@@ -39,7 +39,7 @@ PostRoute.put('/posts/:id', async (req, res) => {
   }
 });
 
-PostRoute.delete('/posts/:id', async (req, res) => {
+PostRoute.delete('/:id', async (req, res) => {
   const value = await UseCases.PostsService.deletePost(req.params.id);
   try {
     res.status(200).json({ message: 'Post deleted', value });
