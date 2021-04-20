@@ -12,10 +12,6 @@ interface IDecoded {
 }
 
 const authMiddleware = (req: Request, res: Response, next: NextFunction) => {
-  if (req.method === 'OPTIONS') {
-    return next();
-  }
-
   try {
     if (!req.headers.authorization) {
       throw new Error();

@@ -7,7 +7,7 @@ class UserData {
     return createdUser;
   }
 
-  async getOne(email: string) {
+  async getOneByEmail(email: string) {
     if (!email) {
       throw new Error('не корректный email');
     }
@@ -16,7 +16,7 @@ class UserData {
   }
   async getOneByID(_id: string) {
     if (!_id) {
-      throw new Error('не корректный email');
+      throw new Error('пользователь не найден ');
     }
     const user = await User.findOne({ _id });
     return user;

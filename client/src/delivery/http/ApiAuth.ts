@@ -16,7 +16,7 @@ axiosApiInstance.interceptors.request.use((config: AxiosRequestConfig) => {
 class ApiAuth implements IApiAuth {
   registration = async (email: string, password: string, passwordConfirmation: string): Promise<AxiosResponse> => {
     try {
-      const succsessRegistration: AxiosResponse = await axios.post('/auth/registration', { email, password, passwordConfirmation });
+      const succsessRegistration: AxiosResponse = await axios.post('/api//auth/registration', { email, password, passwordConfirmation });
       return succsessRegistration;
     } catch (e) {
       throw new Error(e);
@@ -25,7 +25,7 @@ class ApiAuth implements IApiAuth {
 
   login = async (email: string, password: string): Promise<AxiosResponse<ApiUserLogin>> => {
     try {
-      const response: AxiosResponse = await axios.post('/auth/login', { email, password });
+      const response: AxiosResponse = await axios.post('/api/auth/login', { email, password });
       return response;
     } catch (e) {
       throw new Error(e);
@@ -34,7 +34,7 @@ class ApiAuth implements IApiAuth {
 
   refresh = async (token: string): Promise<AxiosResponse> => {
     try {
-      const response: AxiosResponse = await axios.post('/auth/refresh', { token });
+      const response: AxiosResponse = await axios.post('/api/auth/refresh', { token });
       return response;
     } catch (e) {
       throw new Error(e);

@@ -8,7 +8,7 @@ import { IUser } from '../../repository/mongoose/types/user';
 
 class AuthService implements IAuthService {
   getUser = (email: string) => {
-    return UserData.getOne(email);
+    return UserData.getOneByEmail(email);
   };
 
   addUser = async (data: IAddNewUser): Promise<IFuncResultModel<IUser>> => {
