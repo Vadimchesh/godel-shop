@@ -1,10 +1,9 @@
 import React, { useState, FC } from 'react';
-import { useTypedSelector } from '../../hooks/useTypedSelector';
 interface IEditPostProps {
   updatePost: (e: React.FormEvent, formData: IPost | any) => void;
 }
 const EditBlogPost: FC<IEditPostProps> = ({ updatePost }) => {
-  const { formData } = useTypedSelector(state => state.posts);
+  const [formData, setFormData] = useState<IPost | any>();
 
   const handleForm = (e: React.FormEvent<HTMLInputElement>): void => {
     setFormData({

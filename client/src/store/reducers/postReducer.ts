@@ -21,7 +21,7 @@ export const postReducer = (state = initialState, action: PostAction): IPostRedu
     case PostsActionTypes.SAVE_POST:
       return { ...state, posts: [...state.posts.concat(action.payload)] };
     case PostsActionTypes.UPDATE_POST:
-      return { ...state, formData: [action.payload] };
+      return { ...state, formData: action.payload };
     case PostsActionTypes.DELETE_POST:
       return { ...state, posts: [...state.posts.filter(item => item._id !== action.payload)] };
     default:

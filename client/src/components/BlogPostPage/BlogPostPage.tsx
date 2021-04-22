@@ -13,7 +13,7 @@ interface IBlogPostParam {
 const BlogPostPage: FC = () => {
   const { id } = useParams<IBlogPostParam>();
   const { fetchOnePost, updatePost, openModal, closeModal } = useActions();
-  const { currentPost, error, loading, formData } = useTypedSelector(state => state.posts);
+  const { currentPost, error, loading } = useTypedSelector(state => state.posts);
   const { isOpen } = useTypedSelector(state => state.modal);
 
   useEffect(() => {
